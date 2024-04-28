@@ -19,11 +19,6 @@ public class Bridge {
 		double probPolyploid = 0.1215;
 		double reducedFertilityTriploid = 0.85;
 		
-		File file = new File("Cytotypes_Dynamics_unreducedGametes01215_Triploids015.txt");
-		FileWriter fw = new FileWriter(file);
-		PrintWriter cytotypes = new PrintWriter(fw);
-		cytotypes.println("diploids;triploids;tetraploids;g");
-		
 		StartGenome initiate = new StartGenome(popSize, chromLength);
 		Evolution resolve = new Evolution(meiosisCoeff, mutationRate, probPolyploid, reducedFertilityTriploid);
 		HashMap<Integer, int[][]> pool01 = initiate.startPop(1);
@@ -34,9 +29,8 @@ public class Bridge {
 		
 		int rep = 0;
 		while(rep < 10) {
-			//probPolyploid = 0.0;
+			
 			System.out.println("Repetition: "+rep);
-			//while(probPolyploid < 0.30001) {
 				
 			pool01 = initiate.startPop(1);
 				
@@ -83,19 +77,7 @@ public class Bridge {
 					tetraploids = tetraploids01.size();
 					triploids = triploids01.size();
 					diploids = popSize - triploids - tetraploids;
-
-					//if(count == 4999) {
-					
-						sum = diploids + triploids + tetraploids;
-						
-						cytotypes.println((diploids/sum)+";"+(triploids/sum)+";"+(tetraploids/sum)+";"+count);
-					//}
-						System.out.println((diploids/sum)+";"+(triploids/sum)+";"+(tetraploids/sum)+";"+probPolyploid+"\t"+count);
-					count++;
 				}
-				
-			//}
-			
 			rep++;
 		}
 		
